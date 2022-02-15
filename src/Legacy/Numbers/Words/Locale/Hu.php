@@ -260,7 +260,11 @@ class Hu extends Words
         }
 
         if ($fraction !== null) {
-            $return .= ' ' . trim($this->toWords($fraction));
+            if($this->options->isConvertFraction()){
+                $return .= ' ' . trim($this->toWords($fraction));
+            }else{
+                $return .= ' ' . trim($fraction);
+            }
 
             $level = ($fraction == 1) ? 0 : 1;
             if ($level > 0) {

@@ -2,6 +2,8 @@
 
 namespace NumberToWords\CurrencyTransformer;
 
+use NumberToWords\TransformerOptions\CurrencyTransformerOptions;
+
 class HungarianCurrencyTransformerTest extends CurrencyTransformerTest
 {
     protected function setUp(): void
@@ -11,6 +13,10 @@ class HungarianCurrencyTransformerTest extends CurrencyTransformerTest
 
     public function providerItConvertsMoneyAmountToWords(): array
     {
+        $options = new CurrencyTransformerOptions();
+        $options->setConvertFraction(false);
+        $options->setShowDecimalIfZero(true);
+
         return [
             [0, 'HUF', 'nulla forint'],
             [53, 'HUF', 'nulla forint ötvenhárom fillér'],
@@ -27,6 +33,7 @@ class HungarianCurrencyTransformerTest extends CurrencyTransformerTest
             [99900, 'EUR', 'kilencszázkilencvenkilenc euró'],
             [100054, 'EUR', 'egyezer euró ötvennégy cent'],
             [101000, 'USD', 'egyezertíz dollár'],
+            [101000, 'HUF', 'egyezertíz forint 00 fillér', $options],
             [111111, 'USD', 'egyezeregyszáztizenegy dollár tizenegy cent']
         ];
     }
