@@ -2,6 +2,8 @@
 
 namespace NumberToWords\CurrencyTransformer;
 
+use NumberToWords\TransformerOptions\CurrencyTransformerOptions;
+
 class PolishCurrencyTransformerTest extends CurrencyTransformerTest
 {
     protected function setUp(): void
@@ -11,6 +13,9 @@ class PolishCurrencyTransformerTest extends CurrencyTransformerTest
 
     public function providerItConvertsMoneyAmountToWords(): array
     {
+        $options = new CurrencyTransformerOptions();
+        $options->setConvertFraction(false);
+        $options->setShowDecimalIfZero(true);
         return [
             //[100, 'CZK', 'jedna korona czeska'],
             [100, 'PLN', 'jeden złoty'],
@@ -25,6 +30,7 @@ class PolishCurrencyTransformerTest extends CurrencyTransformerTest
             [54501, 'PLN', 'pięćset czterdzieści pięć złotych jeden grosz'],
             [54552, 'PLN', 'pięćset czterdzieści pięć złotych pięćdziesiąt dwa grosze'],
             [54599, 'PLN', 'pięćset czterdzieści pięć złotych dziewięćdziesiąt dziewięć groszy'],
+            [54500, 'PLN', 'pięćset czterdzieści pięć złotych 00 groszy', $options],
             [61500, 'NOK', 'sześćset piętnaście koron norweskich'],
             [154552, 'USD', 'jeden tysiąc pięćset czterdzieści pięć dolarów pięćdziesiąt dwa centy'],
             [304501, 'EUR', 'trzy tysiące czterdzieści pięć euro jeden eurocent'],

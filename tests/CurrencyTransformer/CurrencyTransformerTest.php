@@ -2,6 +2,7 @@
 
 namespace NumberToWords\CurrencyTransformer;
 
+use NumberToWords\TransformerOptions\CurrencyTransformerOptions;
 use PHPUnit\Framework\TestCase;
 
 abstract class CurrencyTransformerTest extends TestCase
@@ -11,13 +12,17 @@ abstract class CurrencyTransformerTest extends TestCase
     /**
      * @dataProvider providerItConvertsMoneyAmountToWords
      */
-    public function testItConvertsMoneyAmountToWords(float $amount, string $currency, string $expectedString): void
-    {
+    public function testItConvertsMoneyAmountToWords(
+        float $amount,
+        string $currency,
+        string $expectedString,
+        ?CurrencyTransformerOptions $options = null
+    ): void {
         if (null === $this->currencyTransformer) {
             self::markTestIncomplete('Please initialize $currencyTransformer property.');
         }
 
-        self::assertEquals($expectedString, $this->currencyTransformer->toWords($amount, $currency));
+        self::assertEquals($expectedString, $this->currencyTransformer->toWords($amount, $currency, $options));
     }
 
     abstract public function providerItConvertsMoneyAmountToWords(): array;

@@ -32,7 +32,11 @@ class PolishCurrencyTransformer implements CurrencyTransformer
         $fraction = abs($amount % 100);
 
         if ($fraction === 0) {
-            $fraction = null;
+            if((null===$options || !$options->isShowDecimalIfZero())){
+                $fraction = null;
+            }elseif ($options instanceof CurrencyTransformerOptions && $options->isShowDecimalIfZero()){
+                $fraction = '00';
+            }
         }
 
         $currency = strtoupper($currency);
@@ -56,7 +60,12 @@ class PolishCurrencyTransformer implements CurrencyTransformer
         );
 
         if (null !== $fraction) {
-            $words[] = $numberTransformer->toWords($fraction);
+            if(null === $options  || $options->isConvertFraction()){
+                $words[] = $numberTransformer->toWords((int)$fraction);
+            }else{
+                $words[] = $fraction;
+            }
+
             $words[] = $nounGenderInflector->inflectNounByNumber(
                 $fraction,
                 $currencyNames[1][0],
