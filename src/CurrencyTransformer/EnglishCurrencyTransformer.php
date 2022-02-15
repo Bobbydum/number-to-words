@@ -30,7 +30,11 @@ class EnglishCurrencyTransformer implements CurrencyTransformer
         $fraction = abs($amount % 100);
 
         if ($fraction === 0) {
-            $fraction = null;
+            if((null===$options || !$options->isShowDecimalIfZero())){
+                $fraction = null;
+            }elseif ($options instanceof CurrencyTransformerOptions && $options->isShowDecimalIfZero()){
+                $fraction = '00';
+            }
         }
 
         $currency = strtoupper($currency);
@@ -57,7 +61,11 @@ class EnglishCurrencyTransformer implements CurrencyTransformer
         }
 
         if (null !== $fraction) {
-            $return .= ' ' . trim($numberTransformer->toWords($fraction));
+            if(null === $options  || $options->isConvertFraction()){
+                $return .= ' ' . trim($numberTransformer->toWords($fraction));
+            }else{
+                $return .= ' ' . trim($fraction);
+            }
 
             $level = $fraction === 1 ? 0 : 1;
 

@@ -16,6 +16,7 @@ class PolishCurrencyTransformerTest extends CurrencyTransformerTest
         $options = new CurrencyTransformerOptions();
         $options->setConvertFraction(false);
         $options->setShowDecimalIfZero(true);
+
         return [
             //[100, 'CZK', 'jedna korona czeska'],
             [100, 'PLN', 'jeden złoty'],

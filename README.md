@@ -12,7 +12,7 @@ This library allows you to convert a number to words.
 Add package to your composer.json by running:
 
 ```
-$ composer require kwn/number-to-words
+$ composer require bobbydum/number-to-words
 ```
 
 
@@ -58,6 +58,11 @@ Then it can be used passing in numeric values for amount and ISO 4217 currency i
 
 ```php
 $currencyTransformer->toWords(5099, 'USD'); // outputs "fifty dollars ninety nine cents"
+
+$options = new CurrencyTransformerOptions();
+$options->setShowDecimalIfZero(true);
+$options->setConvertFraction(false);
+$currencyTransformer->toWords(5000,Language::getCurrentCurrency(),$options); // outputs "fifty dollars 00 cents"
 ```
 
 Please bear in mind, the currency transformer accepts integers as the amount to transform. It means that if you store amounts as floats (e.g. 4.99) you need to multiply them by 100 and pass the integer (499) as an argument.
