@@ -283,7 +283,11 @@ class Dk extends Words
         }
 
         if (null !== $fraction) {
-            $return .= $this->wordSeparator . trim($this->toWords($fraction));
+            if($this->options->isConvertFraction()){
+                $return .= $this->wordSeparator . trim($this->toWords($fraction));
+            }else{
+                $return .= $this->wordSeparator . trim($fraction);
+            }
             $lev = ($fraction == 1) ? 0 : 1;
 
             if ($lev > 0) {

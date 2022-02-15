@@ -327,7 +327,11 @@ class Es extends Words
         $ret = $this->wordSeparator . trim($this->toWords($decimal) . ' ' . $ret);
 
         if (null !== $fraction) {
-            $ret .= $this->wordSeparator . 'con' . $this->wordSeparator . trim($this->toWords($fraction));
+            if($this->options->isConvertFraction()){
+                $ret .= $this->wordSeparator . 'con' . $this->wordSeparator . trim($this->toWords($fraction));
+            }else{
+                $ret .= $this->wordSeparator . 'con' . $this->wordSeparator . trim($fraction);
+            }
 
             $level = ($fraction == 1) ? 0 : 1;
 

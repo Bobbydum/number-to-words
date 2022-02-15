@@ -22,7 +22,6 @@ class EnglishCurrencyTransformerTest extends CurrencyTransformerTest
             [6574, 'USD', 'sixty-five dollars seventy-four cents'],
             [8174, 'USD', 'eighty-one dollars seventy-four cents'],
             [8255, 'USD', 'eighty-two dollars fifty-five cents'],
-            [8200, 'USD', 'eighty-two dollars 00 cents', $options],//
             [72900, 'USD', 'seven hundred twenty-nine dollars'],
             [89400, 'USD', 'eight hundred ninety-four dollars'],
             [99900, 'USD', 'nine hundred ninety-nine dollars'],
@@ -41,6 +40,8 @@ class EnglishCurrencyTransformerTest extends CurrencyTransformerTest
             [-72925, 'USD', 'minus seven hundred twenty-nine dollars twenty-five cents'],
             [-89425, 'USD', 'minus eight hundred ninety-four dollars twenty-five cents'],
             [-99925, 'USD', 'minus nine hundred ninety-nine dollars twenty-five cents'],
+            [8200, 'USD', 'eighty-two dollars 00 cents', $options],
+            [8205, 'USD', 'eighty-two dollars 5 cents', $options],
         ];
     }
 }

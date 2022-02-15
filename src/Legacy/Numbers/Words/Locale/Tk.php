@@ -136,7 +136,11 @@ class Tk extends Words
         $return = $this->toWords($decimal) . ' ' . $currencyNames[0];
 
         if (null !== $fraction) {
-            $return .= ' ' . $this->toWords($fraction) . ' ' . $currencyNames[1];
+            if($this->options->isConvertFraction()){
+                $return .= ' ' . $this->toWords($fraction) . ' ' . $currencyNames[1];
+            }else{
+                $return .= ' ' . $fraction . ' ' . $currencyNames[1];
+            }
         }
 
         return $return;
