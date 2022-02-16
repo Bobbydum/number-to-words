@@ -263,7 +263,7 @@ class Cs extends Words
      * @return string
      * @throws NumberToWordsException
      */
-    public function toCurrencyWords($currency, $decimal, $fraction = null)
+    public function toCurrencyWords($currency, $decimal, $fraction = null): string
     {
         $currency = strtoupper($currency);
 
