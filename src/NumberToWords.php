@@ -5,6 +5,7 @@ namespace NumberToWords;
 use NumberToWords\CurrencyTransformer\CurrencyTransformer;
 use NumberToWords\CurrencyTransformer\GeorgianCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\GermanCurrencyTransformer;
+use NumberToWords\CurrencyTransformer\GreekCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\HungarianCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\DanishCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\EnglishCurrencyTransformer;
@@ -35,6 +36,7 @@ use NumberToWords\NumberTransformer\FrenchBelgianNumberTransformer;
 use NumberToWords\NumberTransformer\FrenchNumberTransformer;
 use NumberToWords\NumberTransformer\GeorgianNumberTransformer;
 use NumberToWords\NumberTransformer\GermanNumberTransformer;
+use NumberToWords\NumberTransformer\GreekNumberTransformer;
 use NumberToWords\NumberTransformer\HungarianNumberTransformer;
 use NumberToWords\NumberTransformer\IndonesianNumberTransformer;
 use NumberToWords\NumberTransformer\ItalianNumberTransformer;
@@ -91,6 +93,7 @@ class NumberToWords
         'tr' => TurkishNumberTransformer::class,
         'ua' => UkrainianNumberTransformer::class,
         'yo' => YorubaNumberTransformer::class,
+        'gr' => GreekNumberTransformer::class,
     ];
 
     private array $currencyTransformers = [
@@ -115,7 +118,8 @@ class NumberToWords
         'tk' => TurkmenCurrencyTransformer::class,
         'tr' => TurkishCurrencyTransformer::class,
         'ua' => UkrainianCurrencyTransformer::class,
-        'yo' => YorubaCurrencyTransformer::class
+        'yo' => YorubaCurrencyTransformer::class,
+        'gr' => GreekCurrencyTransformer::class
     ];
 
     /**
