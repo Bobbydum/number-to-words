@@ -284,7 +284,7 @@ class Cs extends Words
         if (null === $fraction && (!$this->options->isShowDecimalIfZero() && !$this->options->isShowFractionIfZero())) {
             return $return;
         }
-        if ($fraction > $this->options->isShowFractionIfZero()) {
+        if ($fraction > 0 || $this->options->isShowFractionIfZero() || $this->options->isShowDecimalIfZero()) {
             if (0 == $fraction) {
                 $fraction = ' 00';
             }
