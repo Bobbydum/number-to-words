@@ -29,6 +29,8 @@ class GreekCurrencyTransformerTest extends CurrencyTransformerTest
             [2200, 'EUR', 'είκοσι δύο ευρώ μηδέν σεντς', $options2],
             [24300, 'EUR', 'διακόσια σαράντα τρεις ευρώ 00 σεντς', $options],
             [2222, 'EUR', 'είκοσι δύο ευρώ 22 σεντς', $options],
+            [456700, 'EUR', 'τέσσερις χίλιάδες πεντακόσια εξήντα επτά ευρώ 00 σεντς', $options],
+            [156700, 'EUR', 'χίλια πεντακόσια εξήντα επτά ευρώ 00 σεντς', $options],
         ];
     }
 }
