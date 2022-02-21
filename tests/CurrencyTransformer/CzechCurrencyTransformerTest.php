@@ -15,6 +15,7 @@ class CzechCurrencyTransformerTest extends CurrencyTransformerTest
     {
         $options = new CurrencyTransformerOptions();
         $options->setConvertFraction(false);
+        $options->setShortCurrencySyntax(true);
         $options->setShowDecimalIfZero(true);
 
         $options2 = new CurrencyTransformerOptions();

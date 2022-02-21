@@ -15,6 +15,7 @@ class AlbanianCurrencyTransformerTest extends CurrencyTransformerTest
     {
         $options = new CurrencyTransformerOptions();
         $options->setConvertFraction(false);
+        $options->setShortCurrencySyntax(true);
         $options->setShowDecimalIfZero(true);
 
         return [
