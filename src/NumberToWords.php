@@ -2,6 +2,7 @@
 
 namespace NumberToWords;
 
+use NumberToWords\CurrencyTransformer\BulgarianCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\CurrencyTransformer;
 use NumberToWords\CurrencyTransformer\GeorgianCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\GermanCurrencyTransformer;
@@ -119,7 +120,9 @@ class NumberToWords
         'tr' => TurkishCurrencyTransformer::class,
         'ua' => UkrainianCurrencyTransformer::class,
         'yo' => YorubaCurrencyTransformer::class,
-        'gr' => GreekCurrencyTransformer::class
+        'gr' => GreekCurrencyTransformer::class,
+        'bg' => BulgarianCurrencyTransformer::class,
+//        'sv' => SwedishCurrencyTransformer::class,
     ];
 
     /**
