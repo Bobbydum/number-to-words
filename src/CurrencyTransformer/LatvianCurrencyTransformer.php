@@ -18,7 +18,11 @@ class LatvianCurrencyTransformer implements CurrencyTransformer
         $fraction = abs($amount % 100);
 
         if ($fraction === 0) {
-            $fraction = null;
+            if ((null === $options || !$options->isShowDecimalIfZero())) {
+                $fraction = null;
+            } elseif ($options instanceof CurrencyTransformerOptions && $options->isShowDecimalIfZero()) {
+                $fraction = '00';
+            }
         }
 
         $currency = strtoupper($currency);
@@ -37,7 +41,12 @@ class LatvianCurrencyTransformer implements CurrencyTransformer
         $return .= ' ' . $currencyNames[0][$level];
 
         if (!is_null($fraction)) {
-            $return .= ' ' . $dictionary->getAnd() . ' ' . trim($numberTransformer->toWords($fraction));
+            if(null === $options  || $options->isConvertFraction()){
+                $return .= ' ' . $dictionary->getAnd() . ' ' . trim($numberTransformer->toWords($fraction));
+            }else{
+                $return .= ' ' . $dictionary->getAnd() . ' ' . trim($fraction);
+            }
+
 
             $level = $this->getLevel($fraction);
 

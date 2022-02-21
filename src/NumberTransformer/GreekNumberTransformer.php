@@ -10,6 +10,6 @@ class GreekNumberTransformer implements NumberTransformer
     {
         $converter = new Words();
 
-        return $converter->transformToWords($number, 'gr');
+        return $converter->transformToWords($number, 'el');
     }
 }

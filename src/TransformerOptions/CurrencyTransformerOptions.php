@@ -8,6 +8,7 @@ class CurrencyTransformerOptions
     private bool $convertFractionIfZero = true;
     private bool $showDecimalIfZero = false;
     private bool $showFractionIfZero = false;
+    private bool $shortCurrencySyntax = false;
 
     public function isConvertFraction(): bool
     {
@@ -53,6 +54,18 @@ class CurrencyTransformerOptions
     public function setShowFractionIfZero(bool $showFractionIfZero): self
     {
         $this->showFractionIfZero = $showFractionIfZero;
+
+        return $this;
+    }
+
+    public function isShortCurrencySyntax(): bool
+    {
+        return $this->shortCurrencySyntax;
+    }
+
+    public function setShortCurrencySyntax($shortCurrencySyntax): self
+    {
+        $this->shortCurrencySyntax = $shortCurrencySyntax;
 
         return $this;
     }

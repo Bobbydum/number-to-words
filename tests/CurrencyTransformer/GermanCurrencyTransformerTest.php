@@ -22,10 +22,16 @@ class GermanCurrencyTransformerTest extends CurrencyTransformerTest
 
         return [
             [600, 'EUR', 'sechs Euro'],
-            [54532, 'EUR', 'fünfhundertfünfundvierzig Euro und 32 cent', $options],
-            [54500, 'EUR', 'fünfhundertfünfundvierzig Euro und 00 cent', $options],
-            [54500, 'EUR', 'fünfhundertfünfundvierzig Euro und null cent', $options2],
-            [54503, 'EUR', 'fünfhundertfünfundvierzig Euro und drei cent', $options2],
+            [54532, 'EUR', 'fünfhundertfünfundvierzig Euro und 32 Сent', $options],
+            [54500, 'EUR', 'fünfhundertfünfundvierzig Euro und 00 Сent', $options],
+            [54500, 'EUR', 'fünfhundertfünfundvierzig Euro und null Сent', $options2],
+            [54503, 'EUR', 'fünfhundertfünfundvierzig Euro und drei Сent', $options2],
+            [12100, 'EUR', 'einhunderteinundzwanzig Euro und 00 Сent', $options],
+            [12321, 'EUR', 'einhundertdreiundzwanzig Euro und 21 Сent', $options],
+            [12500, 'EUR', 'einhundertfünfundzwanzig Euro und 00 Сent', $options],
+            [12100, 'EUR', 'einhunderteinundzwanzig Euro und null Сent', $options2],
+            [12321, 'EUR', 'einhundertdreiundzwanzig Euro und einundzwanzig Сent', $options2],
+            [12500, 'EUR', 'einhundertfünfundzwanzig Euro und null Сent', $options2],
         ];
     }
 }

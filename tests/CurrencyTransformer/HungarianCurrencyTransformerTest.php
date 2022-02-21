@@ -34,7 +34,10 @@ class HungarianCurrencyTransformerTest extends CurrencyTransformerTest
             [100054, 'EUR', 'egyezer euró ötvennégy cent'],
             [101000, 'USD', 'egyezertíz dollár'],
             [101000, 'HUF', 'egyezertíz forint 00 fillér', $options],
-            [111111, 'USD', 'egyezeregyszáztizenegy dollár tizenegy cent']
+            [111111, 'USD', 'egyezeregyszáztizenegy dollár tizenegy cent'],
+            [12100, 'HUF', 'egyszázhuszonegy forint 00 fillér', $options],
+            [12321, 'HUF', 'egyszázhuszonhárom forint 21 fillér', $options],
+            [12500, 'HUF', 'egyszázhuszonöt forint 00 fillér', $options],
         ];
     }
 }

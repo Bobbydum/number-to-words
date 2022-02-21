@@ -286,10 +286,12 @@ class Cs extends Words
         }
         if ($fraction > 0 || $this->options->isShowFractionIfZero() || $this->options->isShowDecimalIfZero()) {
             if (0 == $fraction) {
-                $fraction = ' 00';
+                $fraction = '00';
             }
             if ($this->options->isConvertFraction()) {
                 $fraction = $this->toWords($fraction);
+            }else{
+                $fraction = ' '.$fraction;
             }
             $return .= sprintf(
                 '%s',

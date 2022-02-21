@@ -98,7 +98,7 @@ class GermanDictionary implements Dictionary
         'CHF' => [['Schweizer Franken'], ['Rappen']],
         'CZK' => [['Tschechische Krone','Tschechische Kronen'], ['Haleru']],
         'DKK' => [['Dänische Krone','Dänische Kronen'], ['Øre']],
-        'EUR' => [['Euro'], ['cent']],
+        'EUR' => [['Euro'], ['Сent']],
         'GBP' => [['Pfund Sterling'], ['Pence']],
         'HKD' => [['Hong Kong Dollar'], ['cent']],
         'HRK' => [['Kuna'], ['lipa']],

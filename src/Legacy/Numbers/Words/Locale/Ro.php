@@ -12,10 +12,10 @@ class Ro extends Words
 {
     private NumberToTripletsConverter $numberToTripletsConverter;
 
-    public function __construct()
-    {
-        $this->numberToTripletsConverter = new NumberToTripletsConverter();
-    }
+//    public function __construct()
+//    {
+//        $this->numberToTripletsConverter = new NumberToTripletsConverter();
+//    }
 
     /**
      * @param mixed $numberAtom
@@ -171,17 +171,23 @@ class Ro extends Words
      *
      * @return string
      */
-    protected function toWords($num = 0, $noun = [])
+    protected function toWords($num = 0, $noun = [], $notConvertDigit = false)
     {
+        $this->numberToTripletsConverter = new NumberToTripletsConverter();
+
         if (empty($noun)) {
             $noun = [null, null, Gender::GENDER_ABSTRACT];
         }
 
         $ret = '';
-
-        if ($num === 0) {
-            return Dictionary::$numbers[0];
+        if ((int)$num === 0) {
+            if($notConvertDigit === true){
+                return '00';
+            }else{
+                return Dictionary::$numbers[0];
+            }
         }
+
 
         if ($num < 0) {
             $ret = Dictionary::$minus . Dictionary::$wordSeparator;
@@ -203,27 +209,31 @@ class Ro extends Words
         $sizeOfNumberGroups = count($numberGroups);
         $showedNoun = false;
 
-        foreach ($numberGroups as $i => $number) {
-            $power = $sizeOfNumberGroups - $i;
+        if ($notConvertDigit === true) {
+            $ret .= Dictionary::$wordSeparator . $num;
+        } else {
+            foreach ($numberGroups as $i => $number) {
+                $power = $sizeOfNumberGroups - $i;
 
-            if ($number === 0) {
-                continue;
+                if ($number === 0) {
+                    continue;
+                }
+
+                if ($i) {
+                    $ret .= Dictionary::$wordSeparator;
+                }
+
+                if ($power - 1) {
+                    $ret .= $this->showDigitsGroup($number, Dictionary::$exponent[($power - 1) * 3]);
+                } else {
+                    $showedNoun = true;
+                    $ret .= $this->showDigitsGroup($number, $noun, false, $num !== 1);
+                }
             }
 
-            if ($i) {
-                $ret .= Dictionary::$wordSeparator;
+            if (!$showedNoun) {
+                $ret .= Dictionary::$wordSeparator . $this->getNounDeclensionForNumber('m', $noun); // ALWAYS many
             }
-
-            if ($power - 1) {
-                $ret .= $this->showDigitsGroup($number, Dictionary::$exponent[($power - 1) * 3]);
-            } else {
-                $showedNoun = true;
-                $ret .= $this->showDigitsGroup($number, $noun, false, $num !== 1);
-            }
-        }
-
-        if (!$showedNoun) {
-            $ret .= Dictionary::$wordSeparator . $this->getNounDeclensionForNumber('m', $noun); // ALWAYS many
         }
 
         return trim($ret, Dictionary::$wordSeparator);
@@ -254,7 +264,8 @@ class Ro extends Words
 
         if ($fraction !== null) {
             $words[] = Dictionary::$and;
-            $words[] = $this->toWords($fraction, $currencyNouns[1]);
+            $notConvertDigit = !$this->options->isConvertFraction();
+            $words[] = $this->toWords($fraction, $currencyNouns[1], $notConvertDigit);
         }
 
         return implode(' ', $words);

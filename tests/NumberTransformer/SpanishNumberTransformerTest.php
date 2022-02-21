@@ -31,7 +31,7 @@ class SpanishNumberTransformerTest extends NumberTransformerTest
             [20, 'veinte'],
             [21, 'veintiuno'],
             [22, 'veintidos'], // should be veintidós
-            [23, 'veintitres'], // should be veintitrés
+            [23, 'veintitrés'], // should be veintitrés
             [26, 'veintiseis'], // should be veintiséis
             [30, 'treinta'],
             [31, 'treinta y uno'],

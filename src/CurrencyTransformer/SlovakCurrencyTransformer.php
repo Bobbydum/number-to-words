@@ -48,21 +48,32 @@ class SlovakCurrencyTransformer implements CurrencyTransformer
         $words = [];
 
         $words[] = $numberTransformer->toWords($decimal);
-        $words[] = $nounGenderInflector->inflectNounByNumber(
-            $decimal,
-            $currencyNames[0][0],
-            $currencyNames[0][1],
-            $currencyNames[0][2]
-        );
+        if(null === $options  || !$options->isShortCurrencySyntax()){
+            $words[] = $nounGenderInflector->inflectNounByNumber(
+                $decimal,
+                $currencyNames[0][0],
+                $currencyNames[0][1],
+                $currencyNames[0][2]
+            );
+        }else{
+            $words[] = $currency;
+        }
+
 
         if (null !== $fraction) {
-            $words[] = $numberTransformer->toWords($fraction);
-            $words[] = $nounGenderInflector->inflectNounByNumber(
-                $fraction,
-                $currencyNames[1][0],
-                $currencyNames[1][1],
-                $currencyNames[1][2]
-            );
+            if(null === $options  || $options->isConvertFraction()){
+                $words[] = $numberTransformer->toWords($fraction);
+                $words[] = $nounGenderInflector->inflectNounByNumber(
+                    $fraction,
+                    $currencyNames[1][0],
+                    $currencyNames[1][1],
+                    $currencyNames[1][2]
+                );
+            }else{
+                $words[] = $fraction.'/100';
+            }
+
+
         }
 
         return implode(' ', $words);

@@ -26,7 +26,10 @@ class CzechCurrencyTransformerTest extends CurrencyTransformerTest
             [2222, 'CZK', 'dvacet dvě Kč dvacet dva'],
             [2200, 'CZK', 'dvacet dvě Kč 00', $options],
             [2222, 'CZK', 'dvacet dvě Kč dvacet dva', $options2],
-            [24300, 'CZK', 'dvě stě čtyřicet tři Kč 00', $options]
+            [24300, 'CZK', 'dvě stě čtyřicet tři Kč 00', $options],
+            [12100, 'CZK', 'sto dvacet jedna Kč 00', $options],
+            [12321, 'CZK', 'sto dvacet tři Kč 21', $options],
+            [12500, 'CZK', 'sto dvacet pět Kč 00', $options],
         ];
     }
 }

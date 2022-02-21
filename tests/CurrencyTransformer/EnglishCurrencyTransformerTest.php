@@ -42,6 +42,8 @@ class EnglishCurrencyTransformerTest extends CurrencyTransformerTest
             [-99925, 'USD', 'minus nine hundred ninety-nine dollars twenty-five cents'],
             [8200, 'USD', 'eighty-two dollars 00 cents', $options],
             [8205, 'USD', 'eighty-two dollars 5 cents', $options],
+            [18200, 'GBP', 'one hundred eighty-two pounds 00 pence', $options],
+            [8205, 'GBP', 'eighty-two pounds 5 pence', $options],
         ];
     }
 }

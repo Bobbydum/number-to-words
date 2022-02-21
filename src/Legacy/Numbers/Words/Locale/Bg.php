@@ -2,6 +2,7 @@
 
 namespace NumberToWords\Legacy\Numbers\Words\Locale;
 
+use NumberToWords\Exception\NumberToWordsException;
 use NumberToWords\Legacy\Numbers\Words;
 
 class Bg extends Words
@@ -18,6 +19,10 @@ class Bg extends Words
         'sta' => 'ста',               // suffix for 2 and 3 hundred
         'stotin' => 'стотин',         // suffix for 4 to 9 hundred
         'hiliadi' => 'хиляди'         // plural form of "thousand"
+    ];
+
+    private static $currency = [
+        'BGN' => ['лв.', 'ст.',],
     ];
 
 
@@ -154,11 +159,6 @@ class Bg extends Words
         303 => 'центилион'
     ];
 
-    public function __construct()
-    {
-        $this->initDigits();
-    }
-
     private function initDigits()
     {
         if (!self::$digitsInitialized) {
@@ -288,8 +288,10 @@ class Bg extends Words
      *
      * @return string
      */
-    protected function toWords($num = 0)
+    protected function toWords($num = 0, $gender = null)
     {
+        $this->initDigits();
+
         $ret = [];
 
         $ret_minus = '';
@@ -327,9 +329,12 @@ class Bg extends Words
             if ($num_groups[$i] != '000') {
                 if ($num_groups[$i] > 1) {
                     if ($pow == 1) {
+                        if (null === $gender) {
+                            $gender = 0;
+                        }
                         $ret[$j] .= $this->showDigitsGroup(
                                 $num_groups[$i],
-                                0,
+                                $gender,
                                 !$this->lastAnd && $i
                             ) . $this->wordSeparator;
                         $ret[$j] .= self::$exponent[($pow - 1) * 3];
@@ -365,5 +370,27 @@ class Bg extends Words
         }
 
         return $ret_minus . rtrim(implode('', array_reverse($ret)), $this->wordSeparator);
+    }
+
+    /**
+     * @param string $currency
+     * @param int $decimal
+     * @param int $fraction
+     *
+     * @return string
+     * @throws NumberToWordsException
+     */
+    public function toCurrencyWords($currency, $decimal, $fraction = null): string
+    {
+        $currentCurrency = self::$currency[$currency];
+        if(0 !== (int)$fraction || $this->options->isShowDecimalIfZero()){
+            if($this->options->isConvertFraction()){
+                $fraction = $this->toWords($fraction, -1);
+            }
+            $fraction = sprintf('%s%s%s%s', ' ', $fraction,' ', $currentCurrency[1]??'');
+        }
+        $decimal =  $this->toWords($decimal, 1);
+
+        return sprintf('%s%s%s%s', $decimal, ' ', $currentCurrency[0] ?? '', $fraction);
     }
 }

@@ -61,7 +61,7 @@ class Es extends Words
         'DKK' => [['danish krone'], ['ore']],
         'DOP' => [['peso dominicano', 'pesos dominicanos'], ['centavo', 'centavos']],
         'EEK' => [['kroon'], ['senti']],
-        'EUR' => [['euro'], ['centavo']],
+        'EUR' => [['euro'], ['céntimo']],
         'GBP' => [['libra'], ['peñique']],
         'HKD' => [['dólar de hong kong', 'dólares de hong kong'], ['centavo']],
         'HRK' => [['croatian kuna'], ['lipa']],
@@ -102,7 +102,7 @@ class Es extends Words
      *
      * @return string
      */
-    protected function toWords($number, $power = 0)
+    protected function toWords($number, $power = 0, $money = false)
     {
         $ret = '';
 
@@ -202,10 +202,16 @@ class Es extends Words
                 if ($d == 0) {
                     $ret .= $this->wordSeparator . 'veinte';
                 } else {
-                    if (($power > 0) and ($d == 1)) {
+                    if (($power > 0) && ($d == 1)) {
                         $ret .= $this->wordSeparator . 'veintiún';
+                    } elseif (3 === $d) {
+                        $ret .= $this->wordSeparator . 'veintitrés';
                     } else {
-                        $ret .= $this->wordSeparator . 'veinti' . self::$digits[$d];
+                        if (0 === $power && 1 === $d && true === $money) {
+                            $ret .= $this->wordSeparator . 'veintiún';
+                        } else {
+                            $ret .= $this->wordSeparator . 'veinti' . self::$digits[$d];
+                        }
                     }
                 }
                 break;
@@ -324,7 +330,7 @@ class Es extends Words
             $ret = $currencyNames[0][0];
         }
 
-        $ret = $this->wordSeparator . trim($this->toWords($decimal) . ' ' . $ret);
+        $ret = $this->wordSeparator . trim($this->toWords($decimal, 0, true) . ' ' . $ret);
 
         if (null !== $fraction) {
             if($this->options->isConvertFraction()){

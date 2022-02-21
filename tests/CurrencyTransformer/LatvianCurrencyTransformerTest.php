@@ -2,6 +2,8 @@
 
 namespace NumberToWords\CurrencyTransformer;
 
+use NumberToWords\TransformerOptions\CurrencyTransformerOptions;
+
 class LatvianCurrencyTransformerTest extends CurrencyTransformerTest
 {
     protected function setUp(): void
@@ -11,6 +13,10 @@ class LatvianCurrencyTransformerTest extends CurrencyTransformerTest
 
     public function providerItConvertsMoneyAmountToWords(): array
     {
+        $options = new CurrencyTransformerOptions();
+        $options->setConvertFraction(false);
+        $options->setShowDecimalIfZero(true);
+
         return [
             [0, 'EUR', 'nulle eiro un nulle centi'],
             [1, 'EUR', 'nulle eiro un viens cents'],
@@ -100,6 +106,10 @@ class LatvianCurrencyTransformerTest extends CurrencyTransformerTest
             [35174315119, 'USD', 'trīs simti piecdesmit viens miljons septiņi simti četrdesmit trīs tūkstoši simts piecdesmit viens dolārs un deviņpadsmit centi'],
             [935174315119, 'USD', 'deviņi miljardi trīs simti piecdesmit viens miljons septiņi simti četrdesmit trīs tūkstoši simts piecdesmit viens dolārs un deviņpadsmit centi'],
             [222935174315119, 'USD', 'divi triljoni divi simti divdesmit deviņi miljardi trīs simti piecdesmit viens miljons septiņi simti četrdesmit trīs tūkstoši simts piecdesmit viens dolārs un deviņpadsmit centi'],
+            [12100, 'EUR', 'simts divdesmit viens eiro un 00 centi', $options],
+            [12321, 'EUR', 'simts divdesmit trīs eiro un 21 cents', $options],
+            [12500, 'EUR', 'simts divdesmit pieci eiro un 00 centi', $options],
+            [12321, 'EUR', 'simts divdesmit trīs eiro un divdesmit viens cents'],
         ];
     }
 }

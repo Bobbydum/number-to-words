@@ -5,9 +5,9 @@ namespace NumberToWords\Legacy\Numbers\Words\Locale;
 use NumberToWords\Exception\NumberToWordsException;
 use NumberToWords\Legacy\Numbers\Words;
 
-class Gr extends Words
+class El extends Words
 {
-    const LOCALE = 'gr';
+    const LOCALE = 'el';
     const LANGUAGE_NAME = 'Greek';
     const LANGUAGE_NAME_NATIVE = 'Ελληνικά';
     const MINUS = 'μείον';
@@ -19,7 +19,7 @@ class Gr extends Words
     const NEUTER = 2;
 
     protected static $ten = [
-        ['', 'ένα', 'δύο', 'τρεις', 'τέσσερα', 'πέντε', 'έξι', 'επτά', 'οκτώ', 'εννέα'],
+        ['', 'ένα', 'δύο', 'τρια', 'τέσσερα', 'πέντε', 'έξι', 'επτά', 'οκτώ', 'εννέα'],
         ['', 'μία', 'δύο', 'τρεις', 'τέσσερις', 'πέντε', 'έξι', 'επτά', 'οκτώ', 'εννέα'],
     ];
 
