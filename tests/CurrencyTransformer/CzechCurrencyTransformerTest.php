@@ -20,6 +20,10 @@ class CzechCurrencyTransformerTest extends CurrencyTransformerTest
 
         $options2 = new CurrencyTransformerOptions();
         $options2->setShowDecimalIfZero(true);
+
+        $options3 = new CurrencyTransformerOptions();
+        $options3->setConvertFraction(false);
+        $options3->setShortCurrencySyntax(true);
         return [
             [222222200, 'CZK', 'dva milióny dvě stě dvacet dvě tisíc dvě stě dvacet dvě Kč'],
             [222222200, 'USD', 'dva milióny dvě stě dvacet dvě tisíc dvě stě dvacet dvě dolary'],
@@ -31,6 +35,9 @@ class CzechCurrencyTransformerTest extends CurrencyTransformerTest
             [12100, 'CZK', 'sto dvacet jedna Kč 00', $options],
             [12321, 'CZK', 'sto dvacet tři Kč 21', $options],
             [12500, 'CZK', 'sto dvacet pět Kč 00', $options],
+            [12100, 'CZK', 'sto dvacet jedna Kč', $options3],
+            [12300, 'CZK', 'sto dvacet tři Kč', $options3],
+            [12500, 'CZK', 'sto dvacet pět Kč', $options3],
         ];
     }
 }

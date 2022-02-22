@@ -36,7 +36,7 @@ class SwedishCurrencyTransformerTest extends CurrencyTransformerTest
 //            [12321, 'PLN', 'sto dwadzieścia trzy złote 21 groszy', $options],
 //            [12500, 'PLN', 'sto dwadzieścia pięć złotych 00 groszy', $options],
 //            [61500, 'NOK', 'sześćset piętnaście koron norweskich'],
-            [154552, 'USD', '1545.52'],
+//            [154552, 'USD', '1545.52'],
 //            [304501, 'EUR', 'trzy tysiące czterdzieści pięć euro jeden eurocent'],
         ];
     }
