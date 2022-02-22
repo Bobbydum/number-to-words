@@ -39,6 +39,7 @@ class HungarianCurrencyTransformerTest extends CurrencyTransformerTest
             [12100, 'HUF', 'egyszázhuszonegy forint 00 fillér', $options],
             [12321, 'HUF', 'egyszázhuszonhárom forint 21 fillér', $options],
             [12500, 'HUF', 'egyszázhuszonöt forint 00 fillér', $options],
+            [22500, 'HUF', 'kétszázhuszonöt forint 00 fillér', $options],
         ];
     }
 }

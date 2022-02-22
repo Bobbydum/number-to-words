@@ -2,6 +2,7 @@
 
 namespace NumberToWords\Legacy\Numbers\Words\Locale;
 
+use NumberToWords\Exception\NumberToWordsException;
 use NumberToWords\Legacy\Numbers\Words;
 
 class Sv extends Words
@@ -222,5 +223,18 @@ class Sv extends Words
         }
 
         return $ret;
+    }
+
+    /**
+     * @param string $currency
+     * @param int $decimal
+     * @param int $fraction
+     *
+     * @return string
+     * @throws NumberToWordsException
+     */
+    public function toCurrencyWords($currency, $decimal, $fraction = null): string
+    {
+        return  $decimal =  $this->toWords($decimal);
     }
 }

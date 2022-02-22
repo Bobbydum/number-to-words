@@ -2,6 +2,7 @@
 
 namespace NumberToWords\Legacy\Numbers\Words\Locale;
 
+use Cassandra\Exception\TruncateException;
 use NumberToWords\Exception\NumberToWordsException;
 use NumberToWords\Grammar\Gender;
 use NumberToWords\Language\Romanian\Dictionary;
@@ -59,7 +60,7 @@ class Ro extends Words
      *
      * @return string
      */
-    private function getNounDeclensionForNumber($pluralRule, $noun)
+    private function getNounDeclensionForNumber($pluralRule, $noun, $digit = false)
     {
         // Nothing for abstract count
         if ($noun[2] === Gender::GENDER_ABSTRACT) {
@@ -77,6 +78,10 @@ class Ro extends Words
         }
 
         // Many
+        if (true === $digit) {
+            return Dictionary::$wordSeparator . $noun[1];
+        }
+
         return Dictionary::$manyPart . Dictionary::$wordSeparator . $noun[1];
     }
 
@@ -121,7 +126,7 @@ class Ro extends Words
      *
      * @return string
      */
-    private function showDigitsGroup($number, $noun, $forceNoun = false, $forcePlural = false)
+    private function showDigitsGroup($number, $noun, $forceNoun = false, $forcePlural = false, $getOnlyNoun = false)
     {
         $ret = '';
 
@@ -162,6 +167,10 @@ class Ro extends Words
             $pluralRule = 'f';
         }
 
+        if($getOnlyNoun){
+            return $this->getNounDeclensionForNumber($pluralRule, $noun, true);
+        }
+
         return $ret . Dictionary::$wordSeparator . $this->getNounDeclensionForNumber($pluralRule, $noun);
     }
 
@@ -182,9 +191,9 @@ class Ro extends Words
         $ret = '';
         if ((int)$num === 0) {
             if($notConvertDigit === true){
-                return '00';
+                return '00 '.$this->showDigitsGroup(0, $noun, false, true, true);
             }else{
-                return Dictionary::$numbers[0];
+                return Dictionary::$numbers[0].' '.$this->showDigitsGroup(0, $noun, false, true, true);
             }
         }
 
@@ -210,7 +219,7 @@ class Ro extends Words
         $showedNoun = false;
 
         if ($notConvertDigit === true) {
-            $ret .= Dictionary::$wordSeparator . $num;
+            $ret .= Dictionary::$wordSeparator . $num. $this->showDigitsGroup($num, $noun, false, $num !== 1, true);
         } else {
             foreach ($numberGroups as $i => $number) {
                 $power = $sizeOfNumberGroups - $i;
@@ -263,11 +272,21 @@ class Ro extends Words
         $words[] = $this->toWords($decimal, $currencyNouns[0]);
 
         if ($fraction !== null) {
-            $words[] = Dictionary::$and;
             $notConvertDigit = !$this->options->isConvertFraction();
+
+            if($notConvertDigit){
+                $words[] = Dictionary::$shortAnd;
+                $words[] = ' ';
+            }else{
+                $words[] = ' ';
+                $words[] = Dictionary::$and;
+                $words[] = ' ';
+            }
             $words[] = $this->toWords($fraction, $currencyNouns[1], $notConvertDigit);
+
+
         }
 
-        return implode(' ', $words);
+        return implode('', $words);
     }
 }

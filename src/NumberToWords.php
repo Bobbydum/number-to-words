@@ -4,6 +4,7 @@ namespace NumberToWords;
 
 use NumberToWords\CurrencyTransformer\BulgarianCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\CurrencyTransformer;
+use NumberToWords\CurrencyTransformer\DutchCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\GeorgianCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\GermanCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\GreekCurrencyTransformer;
@@ -18,6 +19,7 @@ use NumberToWords\CurrencyTransformer\RomanianCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\RussianCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\SlovakCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\SpanishCurrencyTransformer;
+use NumberToWords\CurrencyTransformer\SwedishCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\TurkmenCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\TurkishCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\UkrainianCurrencyTransformer;
@@ -122,7 +124,9 @@ class NumberToWords
         'yo' => YorubaCurrencyTransformer::class,
         'gr' => GreekCurrencyTransformer::class,
         'bg' => BulgarianCurrencyTransformer::class,
-//        'sv' => SwedishCurrencyTransformer::class,
+        'sv' => SwedishCurrencyTransformer::class,
+        'nl' => DutchCurrencyTransformer::class,
+        'it' => ItalianCurrencyTransformer::class,
     ];
 
     /**

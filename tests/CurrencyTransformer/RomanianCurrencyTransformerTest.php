@@ -24,9 +24,11 @@ class RomanianCurrencyTransformerTest extends CurrencyTransformerTest
             [140, 'ROL', 'un leu și patruzeci de bani'],
             [145, 'ROL', 'un leu și patruzeci și cinci de bani'],
             [200000, 'ROL', 'două mii de lei'],
-            [12100, 'ROL', 'una sută douăzeci și unu de lei și 00', $options],
-            [12321, 'ROL', 'una sută douăzeci și trei de lei și 21', $options],
-            [12500, 'ROL', 'una sută douăzeci și cinci de lei și 00', $options],
+            [1001001, 'ROL', 'zece mii zece lei și un ban'],
+            [12100, 'ROL', 'una sută douăzeci și unu de lei, 00 bani', $options],
+            [12321, 'ROL', 'una sută douăzeci și trei de lei, 21 bani', $options],
+            [12321, 'ROL', 'una sută douăzeci și trei de lei și douăzeci și unu de bani'],
+            [12500, 'ROL', 'una sută douăzeci și cinci de lei, 00 bani', $options],
         ];
     }
 }

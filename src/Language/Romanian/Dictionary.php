@@ -66,6 +66,8 @@ class Dictionary
 
     public static string $and = 'și';
 
+    public static string $shortAnd = ',';
+
     public static string $wordSeparator = ' ';
 
     public static array $currencyNames = [

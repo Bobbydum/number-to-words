@@ -26,6 +26,9 @@ class DanishCurrencyTransformerTest extends CurrencyTransformerTest
             [12100, 'DKK', 'et hundrede en og tyve kroner og 00 øre', $options],
             [12321, 'DKK', 'et hundrede tre og tyve kroner og 21 øre', $options],
             [12500, 'DKK', 'et hundrede fem og tyve kroner og 00 øre', $options],
+            [12100, 'DKK', 'et hundrede en og tyve kroner'],
+            [12321, 'DKK', 'et hundrede tre og tyve kroner og en og tyve øre'],
+            [12500, 'DKK', 'et hundrede fem og tyve kroner'],
         ];
     }
 }

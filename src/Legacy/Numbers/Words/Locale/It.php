@@ -2,6 +2,7 @@
 
 namespace NumberToWords\Legacy\Numbers\Words\Locale;
 
+use NumberToWords\Exception\NumberToWordsException;
 use NumberToWords\Legacy\Numbers\Words;
 
 class It extends Words
@@ -33,6 +34,10 @@ class It extends Words
         'sette',
         'otto',
         'nove'
+    ];
+
+    private static $currencyNames = [
+        'EUR' => ['euro', 'centesimi'],
     ];
 
     private $wordSeparator = '';
@@ -297,5 +302,42 @@ class It extends Words
         }
 
         return $ret;
+    }
+
+    /**
+     * @param string $currency
+     * @param int $decimal
+     * @param int $fraction
+     *
+     * @return string
+     * @throws NumberToWordsException
+     */
+    public function toCurrencyWords($currency, $decimal, $fraction = null): string
+    {
+        $currency = strtoupper($currency);
+
+        if (!array_key_exists($currency, static::$currencyNames)) {
+            throw new NumberToWordsException(
+                sprintf('Currency "%s" is not available for "%s" language', $currency, get_class($this))
+            );
+        }
+
+        $currencyNames = static::$currencyNames[$currency];
+
+        $decimal = $this->toWords($decimal);
+
+        if ($fraction > 0 || $this->options->isShowFractionIfZero() || $this->options->isShowDecimalIfZero()) {
+            if ($this->options->isConvertFraction()) {
+                $fraction = $this->toWords($fraction);
+            } else {
+                if (0 === (int)$fraction) {
+                    $fraction = '00';
+                }
+            }
+
+            $fraction = sprintf('%s %s %s', 'e', $fraction, $currencyNames[1]);
+        }
+
+        return sprintf('%s %s %s', $decimal, $currencyNames[0], $fraction);
     }
 }
