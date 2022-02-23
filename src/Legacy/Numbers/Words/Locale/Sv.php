@@ -55,6 +55,12 @@ class Sv extends Words
 
     private $exponentWordSeparator = '-';
 
+    public static array $currencyNames = [
+        'EUR' => [['euro'], ['eurocent']],
+        'SEK' => [['kr'], ['']],
+        'USD' => [['dollar'], ['cent']],
+    ];
+
 
     /**
      * @param int $num
@@ -235,6 +241,31 @@ class Sv extends Words
      */
     public function toCurrencyWords($currency, $decimal, $fraction = null): string
     {
-        return  $decimal =  $this->toWords($decimal);
+        $currency = strtoupper($currency);
+
+        if (!array_key_exists($currency, static::$currencyNames)) {
+            throw new NumberToWordsException(
+                sprintf('Currency "%s" is not available for "%s" language', $currency, get_class($this))
+            );
+        }
+
+        $currencyNames = static::$currencyNames[$currency];
+
+        $decimal = $this->toWords($decimal);
+
+        if ($fraction > 0 || $this->options->isShowFractionIfZero() || $this->options->isShowDecimalIfZero()) {
+            if ($this->options->isConvertFraction()) {
+                $fraction = $this->toWords($fraction);
+            } else {
+                if (0 === (int)$fraction) {
+                    $fraction = ' 00';
+                } else {
+                    $fraction = sprintf('%s%s', ' ', $fraction);
+                }
+            }
+            $fraction = sprintf('%s %s', $fraction, $currencyNames[1][0]);
+        }
+
+        return sprintf('%s %s%s', $decimal, $currencyNames[0][0], $fraction);
     }
 }
