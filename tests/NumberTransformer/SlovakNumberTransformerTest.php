@@ -37,6 +37,14 @@ class SlovakNumberTransformerTest extends NumberTransformerTest
             [30, 'tridsať'],
             [31, 'tridsať jeden'],
             [40, 'štyridsať'],
+            [100, 'sto'],
+            [110, 'sto desať'],
+            [210, 'dvesto desať'],
+            [310, 'tristo desať'],
+            [111, 'sto jedenásť'],
+            [1110, 'jeden tisíc sto desať'],
+            [3230, 'tri tisíce dvesto tridsať'],
+            [5230, 'päť tisíc dvesto tridsať'],
         ];
     }
 }
