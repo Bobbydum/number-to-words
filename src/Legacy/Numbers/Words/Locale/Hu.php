@@ -208,7 +208,6 @@ class Hu extends Words
         }
 
         if ($d > 0) {
-//            echo $power .'--'. $d;
             if ($power > 0 && $t === 0 && ($power < 6 || $d !== 1)) {
                 $return .= $this->wordSeparator . self::$digits[$d][1];
             } else {
