@@ -16,7 +16,7 @@ class ItalianCurrencyTransformerTest extends CurrencyTransformerTest
         $options = new CurrencyTransformerOptions();
         $options->setConvertFraction(false);
         $options->setShortCurrencySyntax(true);
-        $options->setShowDecimalIfZero(true);
+        $options->setShowFractionIfZero(true);
 
         return [
             [12100, 'EUR', 'centoventuno euro e 00 centesimi', $options],

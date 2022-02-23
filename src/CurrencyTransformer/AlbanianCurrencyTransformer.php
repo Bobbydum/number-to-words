@@ -30,9 +30,9 @@ class AlbanianCurrencyTransformer implements CurrencyTransformer
         $fraction = abs($amount % 100);
 
         if ($fraction === 0) {
-            if(null===$options || !$options->isShowDecimalIfZero()){
+            if (null === $options || !$options->isShowFractionIfZero()) {
                 $fraction = null;
-            }elseif ($options instanceof CurrencyTransformerOptions && $options->isShowDecimalIfZero()){
+            } else {
                 $fraction = '00';
             }
         }

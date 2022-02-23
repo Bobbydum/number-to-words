@@ -16,7 +16,7 @@ class EnglishCurrencyTransformerTest extends CurrencyTransformerTest
         $options = new CurrencyTransformerOptions();
         $options->setConvertFraction(false);
         $options->setShortCurrencySyntax(true);
-        $options->setShowDecimalIfZero(true);
+        $options->setShowFractionIfZero(true);
 
         return [
             [6474, 'USD', 'sixty-four dollars seventy-four cents'],

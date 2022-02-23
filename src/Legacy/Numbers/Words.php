@@ -40,9 +40,9 @@ class Words
         $decimalPart = (int) ($amount / 100);
         $fractionalPart = abs($amount % 100);
 
-        if ($fractionalPart === 0 && !$this->options->isShowDecimalIfZero()) {
+        if ($fractionalPart === 0 && !$this->options->isShowFractionIfZero()) {
             return trim($transformer->toCurrencyWords($currency, $decimalPart));
-        }elseif ($fractionalPart === 0){
+        } elseif ($fractionalPart === 0) {
             $fractionalPart = '00';
         }
 

@@ -206,12 +206,11 @@ class El extends Words
             $this->wordSeparator,
             $this->morph($decimal, $currencyNames[0])
         );
-//        var_dump($return);
-        if (null === $fraction && (!$this->options->isShowDecimalIfZero() && !$this->options->isShowFractionIfZero())) {
+        if (null === $fraction && !$this->options->isShowFractionIfZero()) {
             return $return;
         }
-        if ($fraction > 0 || $this->options->isShowFractionIfZero() || $this->options->isShowDecimalIfZero()) {
-            if (0 == $fraction) {
+        if ($fraction > 0 || $this->options->isShowFractionIfZero()) {
+            if (0 === (int)$fraction) {
                 $fraction = '00';
             }
             if ($this->options->isConvertFraction()) {
@@ -219,7 +218,6 @@ class El extends Words
                     '%s',
                     $this->toWords($fraction),
                 );
-
             }
             $return .= sprintf(
                 '%s%s%s%s',

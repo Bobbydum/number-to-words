@@ -212,7 +212,7 @@ class Fr extends Words
     {
         $ret = '';
 
-        if ($number === 0) {
+        if ((int)$number === 0) {
             return $this->zero;
         }
 
@@ -280,12 +280,13 @@ class Fr extends Words
             $return .= $currencyNames[0][0];
         }
 
-        if (null !== $fraction) {
+        if (0 !== (int)$fraction  || $this->options->isShowFractionIfZero()) {
+            $fractionString = $this->options->isConvertFraction() ? $this->toWords($fraction) : $fraction;
             $return .= sprintf(
                 '%1$s%2$s%1$s%3$s%1$s',
                 $this->wordSeparator,
                 $this->subunitSeparator,
-                trim($this->toWords($fraction))
+                trim($fractionString)
             );
 
             $level = $fraction === 1 ? 0 : 1;

@@ -281,17 +281,17 @@ class Cs extends Words
             $this->wordSeparator,
             $this->morph($decimal, $currencyNames[0])
         );
-        if (null === $fraction && (!$this->options->isShowDecimalIfZero() && !$this->options->isShowFractionIfZero())) {
+        if (null === $fraction && !$this->options->isShowFractionIfZero()) {
             return $return;
         }
-        if ($fraction > 0 || $this->options->isShowFractionIfZero() || $this->options->isShowDecimalIfZero()) {
-            if (0 == $fraction) {
+        if ($fraction > 0 || $this->options->isShowFractionIfZero()) {
+            if (0 === (int)$fraction) {
                 $fraction = '00';
             }
             if ($this->options->isConvertFraction()) {
                 $fraction = $this->toWords($fraction);
-            }else{
-                $fraction = ' '.$fraction;
+            } else {
+                $fraction = ' ' . $fraction;
             }
             $return .= sprintf(
                 '%s',

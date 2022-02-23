@@ -16,10 +16,10 @@ class GermanCurrencyTransformerTest extends CurrencyTransformerTest
         $options = new CurrencyTransformerOptions();
         $options->setConvertFraction(false);
         $options->setShortCurrencySyntax(true);
-        $options->setShowDecimalIfZero(true);
+        $options->setShowFractionIfZero(true);
 
         $options2 = new CurrencyTransformerOptions();
-        $options2->setShowDecimalIfZero(true);
+        $options2->setShowFractionIfZero(true);
 
         return [
             [600, 'EUR', 'sechs Euro'],

@@ -16,7 +16,7 @@ class PolishCurrencyTransformerTest extends CurrencyTransformerTest
         $options = new CurrencyTransformerOptions();
         $options->setConvertFraction(false);
         $options->setShortCurrencySyntax(true);
-        $options->setShowDecimalIfZero(true);
+        $options->setShowFractionIfZero(true);
 
         return [
             [100, 'PLN', 'jeden złoty'],

@@ -16,10 +16,10 @@ class GreekCurrencyTransformerTest extends CurrencyTransformerTest
         $options = new CurrencyTransformerOptions();
         $options->setConvertFraction(false);
         $options->setShortCurrencySyntax(true);
-        $options->setShowDecimalIfZero(true);
+        $options->setShowFractionIfZero(true);
 
         $options2 = new CurrencyTransformerOptions();
-        $options2->setShowDecimalIfZero(true);
+        $options2->setShowFractionIfZero(true);
         return [
             [222222200, 'EUR', 'δύο εκατομμύρια διακόσιες είκοσι δύο χίλιάδες διακόσια είκοσι δύο ευρώ'],
             [222222200, 'USD', 'δύο εκατομμύρια διακόσιες είκοσι δύο χίλιάδες διακόσια είκοσι δύο δολάρια'],

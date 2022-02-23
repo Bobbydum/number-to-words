@@ -383,13 +383,13 @@ class Bg extends Words
     public function toCurrencyWords($currency, $decimal, $fraction = null): string
     {
         $currentCurrency = self::$currency[$currency];
-        if(0 !== (int)$fraction || $this->options->isShowDecimalIfZero()){
-            if($this->options->isConvertFraction()){
+        if (0 !== (int)$fraction || $this->options->isShowFractionIfZero()) {
+            if ($this->options->isConvertFraction()) {
                 $fraction = $this->toWords($fraction, -1);
             }
-            $fraction = sprintf('%s%s%s%s', ' ', $fraction,' ', $currentCurrency[1]??'');
+            $fraction = sprintf('%s%s%s%s', ' ', $fraction, ' ', $currentCurrency[1] ?? '');
         }
-        $decimal =  $this->toWords($decimal, 1);
+        $decimal = $this->toWords($decimal, 1);
 
         return sprintf('%s%s%s%s', $decimal, ' ', $currentCurrency[0] ?? '', $fraction);
     }

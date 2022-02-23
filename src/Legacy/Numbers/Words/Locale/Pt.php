@@ -1,6 +1,6 @@
 <?php
 
-namespace NumberToWords\Legacy\Numbers\Words\Locale\Pt;
+namespace NumberToWords\Legacy\Numbers\Words\Locale;
 
 use NumberToWords\Exception\NumberToWordsException;
 use NumberToWords\Legacy\Numbers\Words;
@@ -339,7 +339,7 @@ class Pt extends Words
          * Test if fraction was given and != 0
          */
         $fraction = (int) $fraction;
-        if ($fraction) {
+        if ($fraction || $this->options->isShowFractionIfZero()) {
 
             /**
              * Removes leading zeros, spaces, decimals etc.
@@ -351,6 +351,10 @@ class Pt extends Words
                 throw new NumberToWordsException('Fraction out of range.');
             }
 
+            if ((int)$num === 0 && $this->options->isShowFractionIfZero()) {
+                $num = '00';
+            }
+
             if (count($ret)) {
                 $ret[] = trim($this->separator);
             } else {
@@ -358,7 +362,12 @@ class Pt extends Words
             }
 
 
-            $ret[] = $this->toWords($num);
+            if ($this->options->isConvertFraction()) {
+                $ret[] = $this->toWords($num);
+            } else {
+                $ret[] = $num;
+            }
+
 
             if ($num > 1) {
                 $ret[] = $currencyNames[1][1];

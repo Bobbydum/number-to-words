@@ -60,7 +60,7 @@ Then it can be used passing in numeric values for amount and ISO 4217 currency i
 $currencyTransformer->toWords(5099, 'USD'); // outputs "fifty dollars ninety nine cents"
 
 $options = new CurrencyTransformerOptions();
-$options->setShowDecimalIfZero(true);
+$options->setShowFractionIfZero(true);
 $options->setConvertFraction(false);
 $currencyTransformer->toWords(5000,Language::getCurrentCurrency(),$options); // outputs "fifty dollars 00 cents"
 ```
