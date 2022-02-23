@@ -11,6 +11,7 @@ use NumberToWords\CurrencyTransformer\GreekCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\HungarianCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\DanishCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\EnglishCurrencyTransformer;
+use NumberToWords\CurrencyTransformer\ItalianCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\LatvianCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\LithuanianCurrencyTransformer;
 use NumberToWords\CurrencyTransformer\PolishCurrencyTransformer;
@@ -50,6 +51,7 @@ use NumberToWords\NumberTransformer\PersianNumberTransformer;
 use NumberToWords\NumberTransformer\PolishNumberTransformer;
 use NumberToWords\NumberTransformer\NumberTransformer;
 use NumberToWords\NumberTransformer\PortugueseBrazilianNumberTransformer;
+use NumberToWords\NumberTransformer\PortugueseNumberTransformer;
 use NumberToWords\NumberTransformer\RomanianNumberTransformer;
 use NumberToWords\NumberTransformer\RussianNumberTransformer;
 use NumberToWords\NumberTransformer\SlovakNumberTransformer;
@@ -88,6 +90,7 @@ class NumberToWords
         'nl' => DutchNumberTransformer::class,
         'pl' => PolishNumberTransformer::class,
         'pt_BR' => PortugueseBrazilianNumberTransformer::class,
+        'pt' => PortugueseNumberTransformer::class,
         'ro' => RomanianNumberTransformer::class,
         'ru' => RussianNumberTransformer::class,
         'sk' => SlovakNumberTransformer::class,
@@ -127,6 +130,7 @@ class NumberToWords
         'sv' => SwedishCurrencyTransformer::class,
         'nl' => DutchCurrencyTransformer::class,
         'it' => ItalianCurrencyTransformer::class,
+        'pt' => PortugueseNumberTransformer::class,
     ];
 
     /**
