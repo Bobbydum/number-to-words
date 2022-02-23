@@ -53,7 +53,7 @@ class Hu extends Words
 
     private $wordSeparator = '';
 
-    private $thousandSeparator = '';
+    private $thousandSeparator = '-';
 
     private static $currencyNames = [
         'ALL' => [['lek'], ['qindarke']],
