@@ -39,21 +39,21 @@ class Hu extends Words
     ];
 
     private static $digits = [
-        'nulla',
-        'egy',
-        'kettő',
-        'három',
-        'négy',
-        'öt',
-        'hat',
-        'hét',
-        'nyolc',
-        'kilenc'
+        ['nulla',''],
+        ['egy',''],
+        ['kettő','két'],
+        ['három','három'],
+        ['négy','négy'],
+        ['öt','öt'],
+        ['hat','hat'],
+        ['hét','hét'],
+        ['nyolc','nyolc'],
+        ['kilenc','kilenc'],
     ];
 
     private $wordSeparator = '';
 
-    private $thousandSeparator = '-';
+    private $thousandSeparator = '';
 
     private static $currencyNames = [
         'ALL' => [['lek'], ['qindarke']],
@@ -109,7 +109,7 @@ class Hu extends Words
         }
 
         if ($number == 0 || $number == '') {
-            return $this->wordSeparator . self::$digits[0];
+            return $this->wordSeparator . self::$digits[0][0];
         }
 
         $gt2000 = $number > 2000;
@@ -147,18 +147,18 @@ class Hu extends Words
         $h = (int) ($number / 100) % 10;
 
         if ($h) {
-            $return .= $this->wordSeparator . self::$digits[$h] . $this->wordSeparator . 'száz';
+            $return .= $this->wordSeparator . self::$digits[$h][1] . $this->wordSeparator . 'száz';
         }
 
         // ten, twenty etc.
         switch ($t) {
             case 9:
             case 5:
-                $return .= $this->wordSeparator . self::$digits[$t] . 'ven';
+                $return .= $this->wordSeparator . self::$digits[$t][0] . 'ven';
                 break;
             case 8:
             case 6:
-                $return .= $this->wordSeparator . self::$digits[$t] . 'van';
+                $return .= $this->wordSeparator . self::$digits[$t][0] . 'van';
                 break;
             case 7:
                 $return .= $this->wordSeparator . 'hetven';
@@ -208,7 +208,12 @@ class Hu extends Words
         }
 
         if ($d > 0) {
-            $return .= $this->wordSeparator . self::$digits[$d];
+//            echo $power .'--'. $d;
+            if ($power > 0 && $t === 0 && ($power < 6 || $d !== 1)) {
+                $return .= $this->wordSeparator . self::$digits[$d][1];
+            } else {
+                $return .= $this->wordSeparator . self::$digits[$d][0];
+            }
         }
 
         if ($power > 0) {
