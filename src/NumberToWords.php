@@ -99,7 +99,7 @@ class NumberToWords
         'tr' => TurkishNumberTransformer::class,
         'ua' => UkrainianNumberTransformer::class,
         'yo' => YorubaNumberTransformer::class,
-        'gr' => GreekNumberTransformer::class,
+        'el' => GreekNumberTransformer::class,
     ];
 
     private array $currencyTransformers = [
@@ -125,7 +125,7 @@ class NumberToWords
         'tr' => TurkishCurrencyTransformer::class,
         'ua' => UkrainianCurrencyTransformer::class,
         'yo' => YorubaCurrencyTransformer::class,
-        'gr' => GreekCurrencyTransformer::class,
+        'el' => GreekCurrencyTransformer::class,
         'bg' => BulgarianCurrencyTransformer::class,
         'sv' => SwedishCurrencyTransformer::class,
         'nl' => DutchCurrencyTransformer::class,
